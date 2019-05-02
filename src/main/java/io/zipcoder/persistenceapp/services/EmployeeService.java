@@ -5,6 +5,9 @@ import io.zipcoder.persistenceapp.repos.EmployeeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class EmployeeService {
 
@@ -15,8 +18,8 @@ public class EmployeeService {
         this.employeeRepo = employeeRepo;
     }
 
-    public Employee createEmployee(String firstName, String lastName, String title, String phoneNumber, String email, String hireDate, int manager, int deptNumber) {
-        Employee employee = new Employee(firstName, lastName, title, phoneNumber, email, hireDate, manager, deptNumber);
+    public Employee createEmployee(String firstName, String lastName, String title, String phoneNumber, String email, String hireDate, Long managerId, Long deptNumber) {
+        Employee employee = new Employee(firstName, lastName, title, phoneNumber, email, hireDate, managerId, deptNumber);
         return employeeRepo.save(employee);
     }
 
@@ -28,8 +31,8 @@ public class EmployeeService {
         return employeeRepo.findAll();
     }
 
-    public Iterable<Employee> findAllByManager(Employee manager) {
-        return employeeRepo.findAllByEmployee(manager);
+    public Iterable<Employee> findAllByManager(Long managerId) {
+        return employeeRepo.findAllByManager(managerId);
     }
 
     public Employee findById(Long id) {
@@ -37,19 +40,19 @@ public class EmployeeService {
     }
 
     public Iterable<Employee> findAllWithNoManager() {
-        return employeeRepo.findByEmployeeIsNull();
+        return employeeRepo.findByManagerIsNull();
     }
 
-//    public List<Employee> findHierarchy(Long id) {
-//        List<Employee> managers = new ArrayList<>();
-//        Employee employee = employeeRepo.getOne(id);
-//        while (employee != null) {
-//            int manager = employee.getManager();
-//            managers.add(findById(mana));
-//            employee = manager;
-//        }
-//        return managers;
-//    }
+    public List<Employee> findHierarchy(Long id) {
+        List<Employee> managers = new ArrayList<>();
+        Employee employee = findById(id);
+        while (employee.getManager() != null) {
+            Long managerId = employee.getManager();
+            managers.add(findById(managerId));
+            employee = findById(managerId);
+        }
+        return managers;
+    }
 
 //    public List<Employee> findEmployeesWithNoManager() {
 //        List<Employee> employees = new ArrayList<>();
@@ -74,9 +77,9 @@ public class EmployeeService {
         return employeeRepo.save(original);
     }
 
-    public Employee updateManager(Long id, Employee manager) {
+    public Employee updateManager(Long id, Long managerId) {
         Employee original = findById(id);
-        original.setManager(manager.getManager());
+        original.setManager(managerId);
         return employeeRepo.save(original);
     }
 

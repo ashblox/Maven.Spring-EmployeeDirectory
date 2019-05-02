@@ -16,7 +16,7 @@ public class DepartmentService {
         this.departmentRepo = departmentRepo;
     }
 
-    public Department createDepartment(String deptName, Employee deptManager) {
+    public Department createDepartment(String deptName, Long deptManager) {
         Department department = new Department(deptName, deptManager);
         return departmentRepo.save(department);
     }
@@ -33,21 +33,20 @@ public class DepartmentService {
         return departmentRepo.getOne(id);
     }
 
-    public Department updateDeptManager(Long id, Employee manager) {
+    public Department updateDeptManager(Long id, Long managerId) {
         Department original = findById(id);
-        original.setDeptManager(manager);
-        return departmentRepo.save(original);
-    }
-
-    public Department updateDepartment(Long id, Department department) {
-        Department original = findById(id);
-        original.setDeptName(department.getDeptName());
-        original.setDeptManager(department.getDeptManager());
+        original.setDeptManager(managerId);
         return departmentRepo.save(original);
     }
 
     public boolean deleteDepartment(Long id) {
         departmentRepo.delete(id);
         return true;
+    }
+
+    public Department updateName(Long id, String name) {
+        Department original = findById(id);
+        original.setDeptName(name);
+        return departmentRepo.save(original);
     }
 }

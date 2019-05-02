@@ -1,42 +1,45 @@
 package io.zipcoder.persistenceapp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Employee {
 
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String title;
     private String phoneNumber;
     private String email;
     private String hireDate;
-    private Integer employee;
-    private int deptNumber;
+    private Long manager;
+    private Long deptNumber;
 
     public Employee() {
     }
 
-    public Employee(String firstName, String lastName, String title, String phoneNumber, String email, String hireDate, Integer manager, int deptNumber) {
+    public Employee(String firstName, String lastName, String title, String phoneNumber, String email, String hireDate, Long manager, Long deptNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.title = title;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.hireDate = hireDate;
-        this.employee = manager;
+        this.manager = manager;
         this.deptNumber = deptNumber;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -88,19 +91,19 @@ public class Employee {
         this.hireDate = hireDate;
     }
 
-    public Integer getManager() {
-        return employee;
+    public Long getManager() {
+        return manager;
     }
 
-    public void setManager(Integer manager) {
-        this.employee = manager;
+    public void setManager(Long managerId) {
+        this.manager = managerId;
     }
 
-    public int getDeptNumber() {
+    public Long getDeptNumber() {
         return deptNumber;
     }
 
-    public void setDeptNumber(int deptNumber) {
+    public void setDeptNumber(Long deptNumber) {
         this.deptNumber = deptNumber;
     }
 
@@ -116,12 +119,12 @@ public class Employee {
                 Objects.equals(phoneNumber, employee.phoneNumber) &&
                 Objects.equals(email, employee.email) &&
                 Objects.equals(hireDate, employee.hireDate) &&
-                Objects.equals(employee, employee.employee);
+                Objects.equals(employee, employee.manager);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, title, phoneNumber, email, hireDate, employee, deptNumber);
+        return Objects.hash(firstName, lastName, title, phoneNumber, email, hireDate, manager, deptNumber);
     }
 
     @Override
