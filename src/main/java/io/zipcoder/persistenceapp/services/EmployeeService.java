@@ -5,15 +5,17 @@ import io.zipcoder.persistenceapp.repos.EmployeeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-
 @Service
 public class EmployeeService {
 
-    @Autowired
     private EmployeeRepo employeeRepo;
 
-    public Employee createEmployee(String firstName, String lastName, String title, String phoneNumber, String email, Date hireDate, Employee manager, int deptNumber) {
+    @Autowired
+    public EmployeeService (EmployeeRepo employeeRepo) {
+        this.employeeRepo = employeeRepo;
+    }
+
+    public Employee createEmployee(String firstName, String lastName, String title, String phoneNumber, String email, String hireDate, int manager, int deptNumber) {
         Employee employee = new Employee(firstName, lastName, title, phoneNumber, email, hireDate, manager, deptNumber);
         return employeeRepo.save(employee);
     }
@@ -26,9 +28,38 @@ public class EmployeeService {
         return employeeRepo.findAll();
     }
 
+    public Iterable<Employee> findAllByManager(Employee manager) {
+        return employeeRepo.findAllByEmployee(manager);
+    }
+
     public Employee findById(Long id) {
         return employeeRepo.getOne(id);
     }
+
+    public Iterable<Employee> findAllWithNoManager() {
+        return employeeRepo.findByEmployeeIsNull();
+    }
+
+//    public List<Employee> findHierarchy(Long id) {
+//        List<Employee> managers = new ArrayList<>();
+//        Employee employee = employeeRepo.getOne(id);
+//        while (employee != null) {
+//            int manager = employee.getManager();
+//            managers.add(findById(mana));
+//            employee = manager;
+//        }
+//        return managers;
+//    }
+
+//    public List<Employee> findEmployeesWithNoManager() {
+//        List<Employee> employees = new ArrayList<>();
+//        for (Employee e : findAll()) {
+//            if (e.getManager() == null) {
+//                employees.add(e);
+//            }
+//        }
+//        return employees;
+//    }
 
     public Employee updateEmployee(Long id, Employee employee) {
         Employee original = findById(id);
@@ -40,6 +71,12 @@ public class EmployeeService {
         original.setHireDate(employee.getHireDate());
         original.setManager(employee.getManager());
         original.setDeptNumber(employee.getDeptNumber());
+        return employeeRepo.save(original);
+    }
+
+    public Employee updateManager(Long id, Employee manager) {
+        Employee original = findById(id);
+        original.setManager(manager.getManager());
         return employeeRepo.save(original);
     }
 

@@ -1,10 +1,6 @@
 package io.zipcoder.persistenceapp.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.Date;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -12,36 +8,36 @@ public class Employee {
 
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    private int employeeNumber;
+    private int id;
     private String firstName;
     private String lastName;
     private String title;
     private String phoneNumber;
     private String email;
-    private Date hireDate;
-    private Employee manager;
+    private String hireDate;
+    private Integer employee;
     private int deptNumber;
 
     public Employee() {
     }
 
-    public Employee(String firstName, String lastName, String title, String phoneNumber, String email, Date hireDate, Employee manager, int deptNumber) {
+    public Employee(String firstName, String lastName, String title, String phoneNumber, String email, String hireDate, Integer manager, int deptNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.title = title;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.hireDate = hireDate;
-        this.manager = manager;
+        this.employee = manager;
         this.deptNumber = deptNumber;
     }
 
-    public int getEmployeeNumber() {
-        return employeeNumber;
+    public int getId() {
+        return id;
     }
 
-    public void setEmployeeNumber(int employeeNumber) {
-        this.employeeNumber = employeeNumber;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -84,20 +80,20 @@ public class Employee {
         this.email = email;
     }
 
-    public Date getHireDate() {
+    public String getHireDate() {
         return hireDate;
     }
 
-    public void setHireDate(Date hireDate) {
+    public void setHireDate(String hireDate) {
         this.hireDate = hireDate;
     }
 
-    public Employee getManager() {
-        return manager;
+    public Integer getManager() {
+        return employee;
     }
 
-    public void setManager(Employee manager) {
-        this.manager = manager;
+    public void setManager(Integer manager) {
+        this.employee = manager;
     }
 
     public int getDeptNumber() {
@@ -120,12 +116,12 @@ public class Employee {
                 Objects.equals(phoneNumber, employee.phoneNumber) &&
                 Objects.equals(email, employee.email) &&
                 Objects.equals(hireDate, employee.hireDate) &&
-                Objects.equals(manager, employee.manager);
+                Objects.equals(employee, employee.employee);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, title, phoneNumber, email, hireDate, manager, deptNumber);
+        return Objects.hash(firstName, lastName, title, phoneNumber, email, hireDate, employee, deptNumber);
     }
 
     @Override

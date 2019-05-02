@@ -1,9 +1,6 @@
 package io.zipcoder.persistenceapp.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -11,40 +8,41 @@ public class Department {
 
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    private int deptNumber;
-    private String deptName;
-    private Employee deptManager;
+    private int id;
+    private String name;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Employee manager;
 
     public Department() {
     }
 
-    public Department(String deptName, Employee deptManager) {
-        this.deptName = deptName;
-        this.deptManager = deptManager;
+    public Department(String deptName, Employee manager) {
+        this.name = deptName;
+        this.manager = manager;
     }
 
-    public int getDeptNumber() {
-        return deptNumber;
+    public int getId() {
+        return id;
     }
 
-    public void setDeptNumber(int deptNumber) {
-        this.deptNumber = deptNumber;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDeptName() {
-        return deptName;
+        return name;
     }
 
     public void setDeptName(String deptName) {
-        this.deptName = deptName;
+        this.name = deptName;
     }
 
     public Employee getDeptManager() {
-        return deptManager;
+        return manager;
     }
 
-    public void setDeptManager(Employee deptManager) {
-        this.deptManager = deptManager;
+    public void setDeptManager(Employee manager) {
+        this.manager = manager;
     }
 
     @Override
@@ -52,20 +50,20 @@ public class Department {
         if (this == o) return true;
         if (!(o instanceof Department)) return false;
         Department that = (Department) o;
-        return deptName.equals(that.deptName) &&
-                deptManager.equals(that.deptManager);
+        return name.equals(that.name) &&
+                manager.equals(that.manager);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(deptName, deptManager);
+        return Objects.hash(name, manager);
     }
 
     @Override
     public String toString() {
         return "Department{" +
-                "deptName='" + deptName + '\'' +
-                ", deptManager=" + deptManager +
+                "deptName='" + name + '\'' +
+                ", manager=" + manager +
                 '}';
     }
 }
