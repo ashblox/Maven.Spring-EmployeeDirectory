@@ -38,7 +38,7 @@ public class DepartmentService {
 
     public Department updateDeptManager(Long id, Long managerId) {
         Department original = findById(id);
-        original.setDeptManager(employeeRepo.getOne(managerId));
+        original.setManager(employeeRepo.getOne(managerId));
         return departmentRepo.save(original);
     }
 
@@ -49,7 +49,7 @@ public class DepartmentService {
 
     public Department updateName(Long id, String name) {
         Department original = findById(id);
-        original.setDeptName(name);
+        original.setName(name);
         return departmentRepo.save(original);
     }
 }

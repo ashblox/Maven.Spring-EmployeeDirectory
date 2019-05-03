@@ -1,5 +1,6 @@
 package io.zipcoder.persistenceapp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -19,13 +20,14 @@ public class Employee {
     private String phoneNumber;
     private String email;
     private String hireDate;
-    @OneToOne
+    @OneToOne (fetch = FetchType.LAZY)
+    @JsonIgnore
     private Department department;
 
     public Employee() {
     }
 
-    public Employee(String firstName, String lastName, String title, String phoneNumber, String email, String hireDate, Employee manager, Department department) {
+    public Employee(String firstName, String lastName, String title, String phoneNumber, String email, String hireDate, Department department) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.title = title;

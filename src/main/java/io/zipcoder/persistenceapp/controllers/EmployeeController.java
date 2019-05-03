@@ -61,9 +61,9 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeService.findAllByManagerIncIndirect(managerId), HttpStatus.OK);
     }
 
-    @PutMapping("/{id}/updateManager/{managerId}")
-    public ResponseEntity<Employee> updateManagerId(@PathVariable Long id, @PathVariable Long managerId) {
-        return new ResponseEntity<>(employeeService.updateManager(id, managerId), HttpStatus.OK);
+    @PutMapping("/{id}/updateDepartment/{deptId}")
+    public ResponseEntity<Employee> updateDepartment(@PathVariable Long id, @PathVariable Long deptId) {
+        return new ResponseEntity<>(employeeService.updateDepartment(id, deptId), HttpStatus.OK);
     }
 
     @PutMapping("/{id}/updateManager")
@@ -82,7 +82,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/deleteByDept/{deptId}")
-    public ResponseEntity<Long> deleteAllByDepartment(@PathVariable Long deptId) {
+    public ResponseEntity<Iterable<Employee>> deleteAllByDepartment(@PathVariable Long deptId) {
         return new ResponseEntity<>(employeeService.removeAllByDepartment(deptId), HttpStatus.OK);
     }
 

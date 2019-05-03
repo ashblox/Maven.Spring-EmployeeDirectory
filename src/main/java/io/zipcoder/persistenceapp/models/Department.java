@@ -1,5 +1,6 @@
 package io.zipcoder.persistenceapp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -15,7 +16,7 @@ public class Department {
     @GeneratedValue (strategy = GenerationType.TABLE)
     private Long id;
     private String name;
-    @OneToOne (orphanRemoval = true)
+    @OneToOne (fetch = FetchType.LAZY)
     private Employee manager;
 
     public Department() {
@@ -34,19 +35,19 @@ public class Department {
         this.id = id;
     }
 
-    public String getDeptName() {
+    public String getName() {
         return name;
     }
 
-    public void setDeptName(String deptName) {
-        this.name = deptName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Employee getDeptManager() {
+    public Employee getManager() {
         return manager;
     }
 
-    public void setDeptManager(Employee manager) {
+    public void setManager(Employee manager) {
         this.manager = manager;
     }
 

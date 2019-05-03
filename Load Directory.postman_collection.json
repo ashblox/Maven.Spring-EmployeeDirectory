@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "5bf47f00-6ff7-4ccc-88e4-0a4849c925d9",
-		"name": "Load Employee Directory",
+		"_postman_id": "00bb5587-a2e9-4618-a380-4ce071cf1ac8",
+		"name": "Load Directory",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -11,10 +11,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "3b05e844-b629-4e74-9f89-3de15f5d2824",
+						"id": "e15e52de-3f12-42dc-8bfd-f30f637d1b15",
 						"exec": [
-							"pm.test(\"Employee created\", function () {",
-							"    pm.response.to.have.status(201);",
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -33,7 +33,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"Melanie\",\n    \"lastName\": \"August\",\n    \"title\": \"Exec Director\",\n    \"phoneNumber\": \"302-655-5067\",\n    \"email\": \"melanie@gmail.com\",\n    \"hireDate\": \"2014-11-09\",\n    \"manager\": null,\n    \"department\": 1\n}"
+					"raw": "{\n\t\"firstName\": \"Megan\",\n\t\"lastName\": \"August\",\n\t\"title\": \"Exec Director\",\n\t\"phoneNumber\": \"655-5644\",\n\t\"email\": \"megan.august@gmail.com\",\n\t\"hireDate\": \"2011-11-01\",\n\t\"department\": null\n}"
 				},
 				"url": {
 					"raw": "localhost:8080/employees/",
@@ -55,10 +55,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "6f286795-9d0a-45c9-aa29-f59aee608b4c",
+						"id": "e15e52de-3f12-42dc-8bfd-f30f637d1b15",
 						"exec": [
-							"pm.test(\"Employee created\", function () {",
-							"    pm.response.to.have.status(201);",
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -77,7 +77,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"Leah\",\n    \"lastName\": \"Thomas\",\n    \"title\": \"Cook\",\n    \"phoneNumber\": \"302-456-5678\",\n    \"email\": \"leahthomas@gmail.com\",\n    \"hireDate\": \"2015-07-09\",\n    \"manager\": null,\n    \"department\": 1\n}"
+					"raw": "{\n\t\"firstName\": \"Leah\",\n\t\"lastName\": \"Thomas\",\n\t\"title\": \"Student\",\n\t\"phoneNumber\": \"654-5784\",\n\t\"email\": \"leah.thomas@gmail.com\",\n\t\"hireDate\": \"2019-02-0\",\n\t\"department\": null\n}"
 				},
 				"url": {
 					"raw": "localhost:8080/employees/",
@@ -99,10 +99,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a6968f86-c3b0-43b7-8831-cd7938a418f4",
+						"id": "e15e52de-3f12-42dc-8bfd-f30f637d1b15",
 						"exec": [
-							"pm.test(\"Employee created\", function () {",
-							"    pm.response.to.have.status(201);",
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -121,7 +121,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"Ashley\",\n    \"lastName\": \"Bloxom\",\n    \"title\": \"Annual Reports Specialist\",\n    \"phoneNumber\": \"302-545-8640\",\n    \"email\": \"ashblox@gmail.com\",\n    \"hireDate\": \"2017-11-09\",\n    \"manager\": null,\n    \"department\": 1\n}"
+					"raw": "{\n\t\"firstName\": \"Davis\",\n\t\"lastName\": \"Perchik\",\n\t\"title\": \"Student\",\n\t\"phoneNumber\": \"456-7654\",\n\t\"email\": \"d.perchik@gmail.com\",\n\t\"hireDate\": \"2019-02-04\",\n\t\"department\": null\n}"
 				},
 				"url": {
 					"raw": "localhost:8080/employees/",
@@ -143,10 +143,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ee7787fb-159c-4b3a-ba56-de5944275cf3",
+						"id": "e15e52de-3f12-42dc-8bfd-f30f637d1b15",
 						"exec": [
-							"pm.test(\"Employee created\", function () {",
-							"    pm.response.to.have.status(201);",
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -165,7 +165,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"Richard\",\n    \"lastName\": \"Bloxom\",\n    \"title\": \"Child\",\n    \"phoneNumber\": \"302-545-8640\",\n    \"email\": \"ashblox@gmail.com\",\n    \"hireDate\": \"2017-11-09\",\n    \"manager\": null,\n    \"department\": 2\n}"
+					"raw": "{\n\t\"firstName\": \"Ashley\",\n\t\"lastName\": \"Bloxom\",\n\t\"title\": \"Student\",\n\t\"phoneNumber\": \"545-8640\",\n\t\"email\": \"ashblox@gmail.com\",\n\t\"hireDate\": \"2019-02-04\",\n\t\"department\": null\n}"
 				},
 				"url": {
 					"raw": "localhost:8080/employees/",
@@ -182,158 +182,16 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8080/employees/2/updateManager/1",
+			"name": "localhost:8080/employees/",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "985ee538-b7c3-445e-b625-69e7a20be0f4",
+						"id": "e15e52de-3f12-42dc-8bfd-f30f637d1b15",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "localhost:8080/employees/2/updateManager/1",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"employees",
-						"2",
-						"updateManager",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8080/employees/3/updateManager/1",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "9580dccb-4e1c-48da-b540-cc8f1f65e9f9",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "localhost:8080/employees/3/updateManager/1",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"employees",
-						"3",
-						"updateManager",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8080/employees/4/updateManager/3",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "6af67085-8543-43be-a5fb-38445ba65f47",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "localhost:8080/employees/4/updateManager/3",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"employees",
-						"4",
-						"updateManager",
-						"3"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8080/departments/",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "9ac4025e-0185-43b4-bb0c-a347e4879b02",
-						"exec": [
-							"pm.test(\"Status code is 201\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});",
-							""
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -351,16 +209,16 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n        \"deptName\": \"Business License\",\n        \"deptManager\": null\n    }"
+					"raw": "{\n    \"firstName\": \"Richard\",\n    \"lastName\": \"Bloxom\",\n    \"title\": \"Child\",\n    \"phoneNumber\": \"545-8640\",\n    \"email\": \"ashblox@gmail.com\",\n    \"hireDate\": \"2019-02-04\",\n    \"department\": null\n}"
 				},
 				"url": {
-					"raw": "localhost:8080/departments/",
+					"raw": "localhost:8080/employees/",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"departments",
+						"employees",
 						""
 					]
 				}
@@ -373,12 +231,11 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ddf77d74-bd7c-4b58-9765-8c7f582221b0",
+						"id": "e15e52de-3f12-42dc-8bfd-f30f637d1b15",
 						"exec": [
-							"pm.test(\"Status code is 201\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});",
-							""
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -390,13 +247,56 @@
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n        \"deptName\": \"Being a kid\",\n        \"deptManager\": null\n    }"
+					"raw": "{\n\t\"name\": \"Coding School\",\n\t\"manager\": null\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/departments",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"departments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/departments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e15e52de-3f12-42dc-8bfd-f30f637d1b15",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Being a Kid\",\n\t\"manager\": null\n}"
 				},
 				"url": {
 					"raw": "localhost:8080/departments",
@@ -417,12 +317,241 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "c8275063-d1eb-462e-9717-fa0df2639ea5",
+						"id": "e15e52de-3f12-42dc-8bfd-f30f637d1b15",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
-							"});",
-							""
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/employees/1/updateDepartment/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"employees",
+						"1",
+						"updateDepartment",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/employees/2/updateDepartment/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e15e52de-3f12-42dc-8bfd-f30f637d1b15",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/employees/2/updateDepartment/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"employees",
+						"2",
+						"updateDepartment",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/employees/3/updateDepartment/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e15e52de-3f12-42dc-8bfd-f30f637d1b15",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/employees/3/updateDepartment/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"employees",
+						"3",
+						"updateDepartment",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/employees/4/updateDepartment/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e15e52de-3f12-42dc-8bfd-f30f637d1b15",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/employees/4/updateDepartment/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"employees",
+						"4",
+						"updateDepartment",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/employees/5/updateDepartment/2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e15e52de-3f12-42dc-8bfd-f30f637d1b15",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/employees/5/updateDepartment/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"employees",
+						"5",
+						"updateDepartment",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/departments/1/updateManager/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e15e52de-3f12-42dc-8bfd-f30f637d1b15",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -459,17 +588,16 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8080/departments/2/updateManager/3",
+			"name": "localhost:8080/departments/2/updateManager/4",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "bfcfcf9e-c216-4533-b601-9296b2d3e861",
+						"id": "e15e52de-3f12-42dc-8bfd-f30f637d1b15",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
-							"});",
-							""
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -490,7 +618,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "localhost:8080/departments/2/updateManager/3",
+					"raw": "localhost:8080/departments/2/updateManager/4",
 					"host": [
 						"localhost"
 					],
@@ -499,7 +627,7 @@
 						"departments",
 						"2",
 						"updateManager",
-						"3"
+						"4"
 					]
 				}
 			},

@@ -2,6 +2,7 @@ package io.zipcoder.persistenceapp.services;
 
 import io.zipcoder.persistenceapp.models.Department;
 import io.zipcoder.persistenceapp.models.Employee;
+import io.zipcoder.persistenceapp.repos.DepartmentRepo;
 import io.zipcoder.persistenceapp.repos.EmployeeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,14 +14,16 @@ import java.util.List;
 public class EmployeeService {
 
     private EmployeeRepo employeeRepo;
+    private DepartmentRepo departmentRepo;
 
     @Autowired
-    public EmployeeService (EmployeeRepo employeeRepo) {
+    public EmployeeService (EmployeeRepo employeeRepo, DepartmentRepo departmentRepo) {
         this.employeeRepo = employeeRepo;
+        this.departmentRepo = departmentRepo;
     }
 
-    public Employee createEmployee(String firstName, String lastName, String title, String phoneNumber, String email, String hireDate, Employee manager, Department department) {
-        Employee employee = new Employee(firstName, lastName, title, phoneNumber, email, hireDate, manager, department);
+    public Employee createEmployee(String firstName, String lastName, String title, String phoneNumber, String email, String hireDate, Department department) {
+        Employee employee = new Employee(firstName, lastName, title, phoneNumber, email, hireDate, department);
         return employeeRepo.save(employee);
     }
 
@@ -33,11 +36,17 @@ public class EmployeeService {
     }
 
     public Iterable<Employee> findAllByManager(Long managerId) {
-        return employeeRepo.findAllByManager(findById(managerId));
+        List<Employee> employees = new ArrayList<>();
+        for (Employee e : findAll()) {
+            if (e.getDepartment().getManager().getId() == managerId) {
+                employees.add(e);
+            }
+        }
+        return employees;
     }
 
     public Iterable<Employee> findAllByDepartment(Long deptId) {
-        return employeeRepo.findAllByDepartment(deptId);
+        return employeeRepo.findAllByDepartment(departmentRepo.getOne(deptId));
     }
 
     public Employee findById(Long id) {
@@ -45,14 +54,14 @@ public class EmployeeService {
     }
 
     public Iterable<Employee> findAllWithNoManager() {
-        return employeeRepo.findByManagerIsNull();
+        return findAllByManager(null);
     }
 
     public List<Employee> findHierarchy(Long id) {
         List<Employee> managers = new ArrayList<>();
         Employee employee = findById(id);
-        while (employee.getManager() != null) {
-            Employee manager = employee.getManager();
+        while (employee.getDepartment().getManager() != null) {
+            Employee manager = employee.getDepartment().getManager();
             managers.add(manager);
             employee = manager;
         }
@@ -77,14 +86,13 @@ public class EmployeeService {
         original.setPhoneNumber(employee.getPhoneNumber());
         original.setEmail(employee.getEmail());
         original.setHireDate(employee.getHireDate());
-        original.setManager(employee.getManager());
         original.setDepartment(employee.getDepartment());
         return employeeRepo.save(original);
     }
 
-    public Employee updateManager(Long id, Long managerId) {
+    public Employee updateDepartment(Long id, Long deptId) {
         Employee original = findById(id);
-        original.setManager(findById(managerId));
+        original.setDepartment(departmentRepo.getOne(deptId));
         return employeeRepo.save(original);
     }
 
@@ -100,8 +108,8 @@ public class EmployeeService {
         return true;
     }
 
-    public Long removeAllByDepartment(Long deptId) {
-        return employeeRepo.removeAllByDepartment(deptId);
+    public Iterable<Employee> removeAllByDepartment(Long deptId) {
+        return employeeRepo.removeAllByDepartment(departmentRepo.getOne(deptId));
     }
 
 }

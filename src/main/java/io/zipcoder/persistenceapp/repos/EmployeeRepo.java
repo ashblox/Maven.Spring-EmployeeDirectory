@@ -9,12 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface EmployeeRepo extends JpaRepository<Employee, Long> {
 
-    Iterable<Employee> findAllByManager(Employee manager);
+    Iterable<Employee> findAllByDepartment(Department department);
 
-    Iterable<Employee> findAllByDepartment(Long departmentId);
-
-    Iterable<Employee> findByManagerIsNull();
-
-    @Transactional
-    Long removeAllByDepartment(Long deptId);
+    Iterable<Employee> removeAllByDepartment(Department department);
 }
