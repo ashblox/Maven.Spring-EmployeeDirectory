@@ -13,7 +13,7 @@ public class Department {
     @GeneratedValue (strategy = GenerationType.TABLE)
     private Long id;
     private String name;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Employee manager;
 
     public Department() {

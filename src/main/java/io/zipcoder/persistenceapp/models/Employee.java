@@ -19,7 +19,7 @@ public class Employee {
     private String phoneNumber;
     private String email;
     private String hireDate;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "manager_id", referencedColumnName = "id")
     private Employee manager;
     private Long department;

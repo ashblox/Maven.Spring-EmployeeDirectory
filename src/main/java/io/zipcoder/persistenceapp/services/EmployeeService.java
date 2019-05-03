@@ -1,8 +1,6 @@
 package io.zipcoder.persistenceapp.services;
 
-import io.zipcoder.persistenceapp.models.Department;
 import io.zipcoder.persistenceapp.models.Employee;
-import io.zipcoder.persistenceapp.repos.DepartmentRepo;
 import io.zipcoder.persistenceapp.repos.EmployeeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,26 +47,26 @@ public class EmployeeService {
         return employeeRepo.findByManagerIsNull();
     }
 
-//    public List<Employee> findHierarchy(Long id) {
-//        List<Employee> managers = new ArrayList<>();
-//        Employee employee = findById(id);
-//        while (employee.getManager() != null) {
-//            Long managerId = employee.getManager();
-//            managers.add(findById(managerId));
-//            employee = findById(managerId);
-//        }
-//        return managers;
-//    }
-//
-//    public List<Employee> findAllByManagerIncIndirect(Long managerId) {
-//        List<Employee> employees = new ArrayList<>();
-//        for (Employee employee : findAll()) {
-//            if (findHierarchy(employee.getId()).contains(findById(managerId))) {
-//                employees.add(employee);
-//            }
-//        }
-//        return employees;
-//    }
+    public List<Employee> findHierarchy(Long id) {
+        List<Employee> managers = new ArrayList<>();
+        Employee employee = findById(id);
+        while (employee.getManager() != null) {
+            Employee manager = employee.getManager();
+            managers.add(manager);
+            employee = manager;
+        }
+        return managers;
+    }
+
+    public List<Employee> findAllByManagerIncIndirect(Long managerId) {
+        List<Employee> employees = new ArrayList<>();
+        for (Employee employee : findAll()) {
+            if (findHierarchy(employee.getId()).contains(findById(managerId))) {
+                employees.add(employee);
+            }
+        }
+        return employees;
+    }
 
     public Employee updateEmployee(Long id, Employee employee) {
         Employee original = findById(id);
