@@ -81,8 +81,9 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeService.deleteEmployeeList(employees), HttpStatus.OK);
     }
 
-//    @DeleteMapping("/deleteByDept/{deptId}")
-//    public ResponseEntity<Boolean> deleteByDepartment(@PathVariable Long deptId) {
-//        return new ResponseEntity<>(employeeService.deleteByDepartment(deptId), HttpStatus.OK);
-//    }
+    @DeleteMapping("/deleteByDept/{deptId}")
+    public ResponseEntity<Long> deleteAllByDepartment(@PathVariable Long deptId) {
+        return new ResponseEntity<>(employeeService.removeAllByDepartment(deptId), HttpStatus.OK);
+    }
+
 }

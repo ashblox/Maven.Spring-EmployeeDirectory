@@ -3,6 +3,8 @@ package io.zipcoder.persistenceapp.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.Constraint;
+import javax.validation.ConstraintValidator;
 import java.util.Objects;
 
 @Entity
@@ -13,7 +15,7 @@ public class Department {
     @GeneratedValue (strategy = GenerationType.TABLE)
     private Long id;
     private String name;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne (orphanRemoval = true)
     private Employee manager;
 
     public Department() {

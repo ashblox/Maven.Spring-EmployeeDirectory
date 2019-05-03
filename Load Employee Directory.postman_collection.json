@@ -33,7 +33,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"Melanie\",\n    \"lastName\": \"August\",\n    \"title\": \"Exec Director\",\n    \"phoneNumber\": \"302-655-5067\",\n    \"email\": \"melanie@gmail.com\",\n    \"hireDate\": \"2014-11-09\",\n    \"manager\": null,\n    \"department\": 2\n}"
+					"raw": "{\n    \"firstName\": \"Melanie\",\n    \"lastName\": \"August\",\n    \"title\": \"Exec Director\",\n    \"phoneNumber\": \"302-655-5067\",\n    \"email\": \"melanie@gmail.com\",\n    \"hireDate\": \"2014-11-09\",\n    \"manager\": null,\n    \"department\": 1\n}"
 				},
 				"url": {
 					"raw": "localhost:8080/employees/",
@@ -165,7 +165,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"Ashley\",\n    \"lastName\": \"Bloxom\",\n    \"title\": \"Annual Reports Specialist\",\n    \"phoneNumber\": \"302-545-8640\",\n    \"email\": \"ashblox@gmail.com\",\n    \"hireDate\": \"2017-11-09\",\n    \"manager\": null,\n    \"department\": 1\n}"
+					"raw": "{\n    \"firstName\": \"Richard\",\n    \"lastName\": \"Bloxom\",\n    \"title\": \"Child\",\n    \"phoneNumber\": \"302-545-8640\",\n    \"email\": \"ashblox@gmail.com\",\n    \"hireDate\": \"2017-11-09\",\n    \"manager\": null,\n    \"department\": 2\n}"
 				},
 				"url": {
 					"raw": "localhost:8080/employees/",
@@ -210,19 +210,19 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"Leah\",\n    \"lastName\": \"Thomas\",\n    \"title\": \"Cook\",\n    \"phoneNumber\": \"302-456-5678\",\n    \"email\": \"leahthomas@gmail.com\",\n    \"hireDate\": \"2015-07-09\",\n    \"manager\": 2,\n    \"department\": 1\n}"
+					"raw": ""
 				},
 				"url": {
-					"raw": "localhost:8080/employees/1/updateManager/2",
+					"raw": "localhost:8080/employees/2/updateManager/1",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"employees",
-						"1",
+						"2",
 						"updateManager",
-						"2"
+						"1"
 					]
 				}
 			},
@@ -257,7 +257,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"Leah\",\n    \"lastName\": \"Thomas\",\n    \"title\": \"Cook\",\n    \"phoneNumber\": \"302-456-5678\",\n    \"email\": \"leahthomas@gmail.com\",\n    \"hireDate\": \"2015-07-09\",\n    \"manager\": 2,\n    \"department\": 1\n}"
+					"raw": ""
 				},
 				"url": {
 					"raw": "localhost:8080/employees/3/updateManager/1",
@@ -304,7 +304,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"Leah\",\n    \"lastName\": \"Thomas\",\n    \"title\": \"Cook\",\n    \"phoneNumber\": \"302-456-5678\",\n    \"email\": \"leahthomas@gmail.com\",\n    \"hireDate\": \"2015-07-09\",\n    \"manager\": 2,\n    \"department\": 1\n}"
+					"raw": ""
 				},
 				"url": {
 					"raw": "localhost:8080/employees/4/updateManager/3",
@@ -396,7 +396,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n        \"deptName\": \"Annual Reports\",\n        \"deptManager\": null\n    }"
+					"raw": "{\n        \"deptName\": \"Being a kid\",\n        \"deptManager\": null\n    }"
 				},
 				"url": {
 					"raw": "localhost:8080/departments",
@@ -440,10 +440,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n        \"deptName\": \"Business License\",\n        \"deptManager\": null\n    }"
+					"raw": ""
 				},
 				"url": {
-					"raw": "localhost:8080/departments/1/updateManager/2",
+					"raw": "localhost:8080/departments/1/updateManager/1",
 					"host": [
 						"localhost"
 					],
@@ -452,7 +452,7 @@
 						"departments",
 						"1",
 						"updateManager",
-						"2"
+						"1"
 					]
 				}
 			},
@@ -487,10 +487,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n        \"deptName\": \"Business License\",\n        \"deptManager\": null\n    }"
+					"raw": ""
 				},
 				"url": {
-					"raw": "localhost:8080/departments/2/updateManager/1",
+					"raw": "localhost:8080/departments/2/updateManager/3",
 					"host": [
 						"localhost"
 					],
@@ -499,183 +499,7 @@
 						"departments",
 						"2",
 						"updateManager",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8080/employees/",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "3b05e844-b629-4e74-9f89-3de15f5d2824",
-						"exec": [
-							"pm.test(\"Employee created\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"Melanie\",\n    \"lastName\": \"August\",\n    \"title\": \"Exec Director\",\n    \"phoneNumber\": \"302-655-5067\",\n    \"email\": \"melanie@gmail.com\",\n    \"hireDate\": \"2014-11-09\",\n    \"manager\": null,\n    \"department\": 2\n}"
-				},
-				"url": {
-					"raw": "localhost:8080/employees/",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"employees",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8080/employees/",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "422ef376-7155-4e7d-b7f1-f7fa0ad372ce",
-						"exec": [
-							"pm.test(\"Employee created\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"Leah\",\n    \"lastName\": \"Thomas\",\n    \"title\": \"Cook\",\n    \"phoneNumber\": \"302-456-5678\",\n    \"email\": \"leahthomas@gmail.com\",\n    \"hireDate\": \"2015-07-09\",\n    \"manager\": null,\n    \"department\": 1\n}"
-				},
-				"url": {
-					"raw": "localhost:8080/employees/",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"employees",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8080/employees/",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "a6968f86-c3b0-43b7-8831-cd7938a418f4",
-						"exec": [
-							"pm.test(\"Employee created\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"Ashley\",\n    \"lastName\": \"Bloxom\",\n    \"title\": \"Annual Reports Specialist\",\n    \"phoneNumber\": \"302-545-8640\",\n    \"email\": \"ashblox@gmail.com\",\n    \"hireDate\": \"2017-11-09\",\n    \"manager\": null,\n    \"department\": 1\n}"
-				},
-				"url": {
-					"raw": "localhost:8080/employees/",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"employees",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8080/employees/",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "ee7787fb-159c-4b3a-ba56-de5944275cf3",
-						"exec": [
-							"pm.test(\"Employee created\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"Ashley\",\n    \"lastName\": \"Bloxom\",\n    \"title\": \"Annual Reports Specialist\",\n    \"phoneNumber\": \"302-545-8640\",\n    \"email\": \"ashblox@gmail.com\",\n    \"hireDate\": \"2017-11-09\",\n    \"manager\": null,\n    \"department\": 1\n}"
-				},
-				"url": {
-					"raw": "localhost:8080/employees/",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"employees",
-						""
+						"3"
 					]
 				}
 			},

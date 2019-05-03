@@ -1,5 +1,6 @@
 package io.zipcoder.persistenceapp.services;
 
+import io.zipcoder.persistenceapp.models.Department;
 import io.zipcoder.persistenceapp.models.Employee;
 import io.zipcoder.persistenceapp.repos.EmployeeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class EmployeeService {
         this.employeeRepo = employeeRepo;
     }
 
-    public Employee createEmployee(String firstName, String lastName, String title, String phoneNumber, String email, String hireDate, Employee manager, Long department) {
+    public Employee createEmployee(String firstName, String lastName, String title, String phoneNumber, String email, String hireDate, Employee manager, Department department) {
         Employee employee = new Employee(firstName, lastName, title, phoneNumber, email, hireDate, manager, department);
         return employeeRepo.save(employee);
     }
@@ -32,7 +33,7 @@ public class EmployeeService {
     }
 
     public Iterable<Employee> findAllByManager(Long managerId) {
-        return employeeRepo.findAllByManager(managerId);
+        return employeeRepo.findAllByManager(findById(managerId));
     }
 
     public Iterable<Employee> findAllByDepartment(Long deptId) {
@@ -99,8 +100,8 @@ public class EmployeeService {
         return true;
     }
 
-//    public boolean deleteByDepartment(Long deptId) {
-//        employeeRepo.deleteByDepartment(deptId);
-//        return true;
-//    }
+    public Long removeAllByDepartment(Long deptId) {
+        return employeeRepo.removeAllByDepartment(deptId);
+    }
+
 }

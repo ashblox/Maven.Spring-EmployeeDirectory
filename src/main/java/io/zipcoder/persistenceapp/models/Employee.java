@@ -19,22 +19,19 @@ public class Employee {
     private String phoneNumber;
     private String email;
     private String hireDate;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "manager_id", referencedColumnName = "id")
-    private Employee manager;
-    private Long department;
+    @OneToOne
+    private Department department;
 
     public Employee() {
     }
 
-    public Employee(String firstName, String lastName, String title, String phoneNumber, String email, String hireDate, Employee manager, Long department) {
+    public Employee(String firstName, String lastName, String title, String phoneNumber, String email, String hireDate, Employee manager, Department department) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.title = title;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.hireDate = hireDate;
-        this.manager = manager;
         this.department = department;
     }
 
@@ -94,19 +91,11 @@ public class Employee {
         this.hireDate = hireDate;
     }
 
-    public Employee getManager() {
-        return manager;
-    }
-
-    public void setManager(Employee managerId) {
-        this.manager = managerId;
-    }
-
-    public Long getDepartment() {
+    public Department getDepartment() {
         return department;
     }
 
-    public void setDepartment(Long department) {
+    public void setDepartment(Department department) {
         this.department = department;
     }
 
@@ -121,13 +110,12 @@ public class Employee {
                 Objects.equals(phoneNumber, employee.phoneNumber) &&
                 Objects.equals(email, employee.email) &&
                 Objects.equals(hireDate, employee.hireDate) &&
-                Objects.equals(manager, employee.manager) &&
                 department.equals(employee.department);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, title, phoneNumber, email, hireDate, manager, department);
+        return Objects.hash(firstName, lastName, title, phoneNumber, email, hireDate, department);
     }
 
     @Override
