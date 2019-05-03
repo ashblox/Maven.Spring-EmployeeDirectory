@@ -7,6 +7,20 @@
 	"item": [
 		{
 			"name": "localhost:8080/employees/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3b05e844-b629-4e74-9f89-3de15f5d2824",
+						"exec": [
+							"pm.test(\"Employee created\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -37,6 +51,20 @@
 		},
 		{
 			"name": "localhost:8080/employees/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6f286795-9d0a-45c9-aa29-f59aee608b4c",
+						"exec": [
+							"pm.test(\"Employee created\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -49,7 +77,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"Leah\",\n    \"lastName\": \"Thomas\",\n    \"title\": \"Cook\",\n    \"phoneNumber\": \"302-456-5678\",\n    \"email\": \"leahthomas@gmail.com\",\n    \"hireDate\": \"2015-07-09\",\n    \"manager\": 2,\n    \"department\": 1\n}"
+					"raw": "{\n    \"firstName\": \"Leah\",\n    \"lastName\": \"Thomas\",\n    \"title\": \"Cook\",\n    \"phoneNumber\": \"302-456-5678\",\n    \"email\": \"leahthomas@gmail.com\",\n    \"hireDate\": \"2015-07-09\",\n    \"manager\": null,\n    \"department\": 1\n}"
 				},
 				"url": {
 					"raw": "localhost:8080/employees/",
@@ -67,6 +95,20 @@
 		},
 		{
 			"name": "localhost:8080/employees/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a6968f86-c3b0-43b7-8831-cd7938a418f4",
+						"exec": [
+							"pm.test(\"Employee created\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -97,6 +139,20 @@
 		},
 		{
 			"name": "localhost:8080/employees/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ee7787fb-159c-4b3a-ba56-de5944275cf3",
+						"exec": [
+							"pm.test(\"Employee created\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -127,6 +183,21 @@
 		},
 		{
 			"name": "localhost:8080/employees/2/updateManager/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "985ee538-b7c3-445e-b625-69e7a20be0f4",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -159,6 +230,21 @@
 		},
 		{
 			"name": "localhost:8080/employees/3/updateManager/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9580dccb-4e1c-48da-b540-cc8f1f65e9f9",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -191,6 +277,21 @@
 		},
 		{
 			"name": "localhost:8080/employees/4/updateManager/3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6af67085-8543-43be-a5fb-38445ba65f47",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -223,6 +324,21 @@
 		},
 		{
 			"name": "localhost:8080/departments/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9ac4025e-0185-43b4-bb0c-a347e4879b02",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -253,6 +369,21 @@
 		},
 		{
 			"name": "localhost:8080/departments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ddf77d74-bd7c-4b58-9765-8c7f582221b0",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -282,6 +413,21 @@
 		},
 		{
 			"name": "localhost:8080/departments/1/updateManager/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c8275063-d1eb-462e-9717-fa0df2639ea5",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -314,6 +460,21 @@
 		},
 		{
 			"name": "localhost:8080/departments/2/updateManager/3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bfcfcf9e-c216-4533-b601-9296b2d3e861",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -339,6 +500,182 @@
 						"2",
 						"updateManager",
 						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/employees/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3b05e844-b629-4e74-9f89-3de15f5d2824",
+						"exec": [
+							"pm.test(\"Employee created\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Melanie\",\n    \"lastName\": \"August\",\n    \"title\": \"Exec Director\",\n    \"phoneNumber\": \"302-655-5067\",\n    \"email\": \"melanie@gmail.com\",\n    \"hireDate\": \"2014-11-09\",\n    \"manager\": null,\n    \"department\": 2\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/employees/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"employees",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/employees/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "422ef376-7155-4e7d-b7f1-f7fa0ad372ce",
+						"exec": [
+							"pm.test(\"Employee created\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Leah\",\n    \"lastName\": \"Thomas\",\n    \"title\": \"Cook\",\n    \"phoneNumber\": \"302-456-5678\",\n    \"email\": \"leahthomas@gmail.com\",\n    \"hireDate\": \"2015-07-09\",\n    \"manager\": null,\n    \"department\": 1\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/employees/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"employees",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/employees/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a6968f86-c3b0-43b7-8831-cd7938a418f4",
+						"exec": [
+							"pm.test(\"Employee created\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Ashley\",\n    \"lastName\": \"Bloxom\",\n    \"title\": \"Annual Reports Specialist\",\n    \"phoneNumber\": \"302-545-8640\",\n    \"email\": \"ashblox@gmail.com\",\n    \"hireDate\": \"2017-11-09\",\n    \"manager\": null,\n    \"department\": 1\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/employees/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"employees",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/employees/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ee7787fb-159c-4b3a-ba56-de5944275cf3",
+						"exec": [
+							"pm.test(\"Employee created\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Ashley\",\n    \"lastName\": \"Bloxom\",\n    \"title\": \"Annual Reports Specialist\",\n    \"phoneNumber\": \"302-545-8640\",\n    \"email\": \"ashblox@gmail.com\",\n    \"hireDate\": \"2017-11-09\",\n    \"manager\": null,\n    \"department\": 1\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/employees/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"employees",
+						""
 					]
 				}
 			},
