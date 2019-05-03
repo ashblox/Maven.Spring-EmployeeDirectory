@@ -20,8 +20,8 @@ public class EmployeeService {
         this.employeeRepo = employeeRepo;
     }
 
-    public Employee createEmployee(String firstName, String lastName, String title, String phoneNumber, String email, String hireDate, Long managerId, Long department) {
-        Employee employee = new Employee(firstName, lastName, title, phoneNumber, email, hireDate, managerId, department);
+    public Employee createEmployee(String firstName, String lastName, String title, String phoneNumber, String email, String hireDate, Employee manager, Long department) {
+        Employee employee = new Employee(firstName, lastName, title, phoneNumber, email, hireDate, manager, department);
         return employeeRepo.save(employee);
     }
 
@@ -49,26 +49,26 @@ public class EmployeeService {
         return employeeRepo.findByManagerIsNull();
     }
 
-    public List<Employee> findHierarchy(Long id) {
-        List<Employee> managers = new ArrayList<>();
-        Employee employee = findById(id);
-        while (employee.getManager() != null) {
-            Long managerId = employee.getManager();
-            managers.add(findById(managerId));
-            employee = findById(managerId);
-        }
-        return managers;
-    }
-
-    public List<Employee> findAllByManagerIncIndirect(Long managerId) {
-        List<Employee> employees = new ArrayList<>();
-        for (Employee employee : findAll()) {
-            if (findHierarchy(employee.getId()).contains(findById(managerId))) {
-                employees.add(employee);
-            }
-        }
-        return employees;
-    }
+//    public List<Employee> findHierarchy(Long id) {
+//        List<Employee> managers = new ArrayList<>();
+//        Employee employee = findById(id);
+//        while (employee.getManager() != null) {
+//            Long managerId = employee.getManager();
+//            managers.add(findById(managerId));
+//            employee = findById(managerId);
+//        }
+//        return managers;
+//    }
+//
+//    public List<Employee> findAllByManagerIncIndirect(Long managerId) {
+//        List<Employee> employees = new ArrayList<>();
+//        for (Employee employee : findAll()) {
+//            if (findHierarchy(employee.getId()).contains(findById(managerId))) {
+//                employees.add(employee);
+//            }
+//        }
+//        return employees;
+//    }
 
     public Employee updateEmployee(Long id, Employee employee) {
         Employee original = findById(id);
@@ -85,7 +85,7 @@ public class EmployeeService {
 
     public Employee updateManager(Long id, Long managerId) {
         Employee original = findById(id);
-        original.setManager(managerId);
+        original.setManager(findById(managerId));
         return employeeRepo.save(original);
     }
 
