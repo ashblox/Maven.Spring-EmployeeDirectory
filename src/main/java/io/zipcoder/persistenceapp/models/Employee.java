@@ -7,6 +7,7 @@ import java.util.Objects;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Table(name = "Employee")
 public class Employee {
 
     @Id
@@ -19,12 +20,13 @@ public class Employee {
     private String email;
     private String hireDate;
     private Long manager;
-    private Long deptNumber;
+//    @OneToOne(mappedBy = "Employee")
+    private Long department;
 
     public Employee() {
     }
 
-    public Employee(String firstName, String lastName, String title, String phoneNumber, String email, String hireDate, Long manager, Long deptNumber) {
+    public Employee(String firstName, String lastName, String title, String phoneNumber, String email, String hireDate, Long manager, Long department) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.title = title;
@@ -32,7 +34,7 @@ public class Employee {
         this.email = email;
         this.hireDate = hireDate;
         this.manager = manager;
-        this.deptNumber = deptNumber;
+        this.department = department;
     }
 
     public Long getId() {
@@ -99,12 +101,12 @@ public class Employee {
         this.manager = managerId;
     }
 
-    public Long getDeptNumber() {
-        return deptNumber;
+    public Long getDepartment() {
+        return department;
     }
 
-    public void setDeptNumber(Long deptNumber) {
-        this.deptNumber = deptNumber;
+    public void setDepartment(Long department) {
+        this.department = department;
     }
 
     @Override
@@ -112,19 +114,19 @@ public class Employee {
         if (this == o) return true;
         if (!(o instanceof Employee)) return false;
         Employee employee = (Employee) o;
-        return deptNumber == employee.deptNumber &&
-                firstName.equals(employee.firstName) &&
+        return firstName.equals(employee.firstName) &&
                 lastName.equals(employee.lastName) &&
                 title.equals(employee.title) &&
                 Objects.equals(phoneNumber, employee.phoneNumber) &&
                 Objects.equals(email, employee.email) &&
                 Objects.equals(hireDate, employee.hireDate) &&
-                Objects.equals(employee, employee.manager);
+                Objects.equals(manager, employee.manager) &&
+                department.equals(employee.department);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, title, phoneNumber, email, hireDate, manager, deptNumber);
+        return Objects.hash(firstName, lastName, title, phoneNumber, email, hireDate, manager, department);
     }
 
     @Override

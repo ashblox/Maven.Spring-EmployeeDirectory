@@ -3,6 +3,7 @@ package io.zipcoder.persistenceapp.services;
 import io.zipcoder.persistenceapp.models.Department;
 import io.zipcoder.persistenceapp.models.Employee;
 import io.zipcoder.persistenceapp.repos.DepartmentRepo;
+import io.zipcoder.persistenceapp.repos.EmployeeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,14 +11,16 @@ import org.springframework.stereotype.Service;
 public class DepartmentService {
 
     private DepartmentRepo departmentRepo;
+    private EmployeeRepo employeeRepo;
 
     @Autowired
-    public DepartmentService (DepartmentRepo departmentRepo) {
+    public DepartmentService (DepartmentRepo departmentRepo, EmployeeRepo employeeRepo) {
         this.departmentRepo = departmentRepo;
+        this.employeeRepo = employeeRepo;
     }
 
-    public Department createDepartment(String deptName, Long deptManager) {
-        Department department = new Department(deptName, deptManager);
+    public Department createDepartment(String deptName, Employee manager) {
+        Department department = new Department(deptName, manager);
         return departmentRepo.save(department);
     }
 
@@ -35,7 +38,7 @@ public class DepartmentService {
 
     public Department updateDeptManager(Long id, Long managerId) {
         Department original = findById(id);
-        original.setDeptManager(managerId);
+        original.setDeptManager(employeeRepo.getOne(managerId));
         return departmentRepo.save(original);
     }
 

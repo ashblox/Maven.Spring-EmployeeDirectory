@@ -10,14 +10,15 @@ public class Department {
     @GeneratedValue (strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private Long managerId;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Employee manager;
 
     public Department() {
     }
 
-    public Department(String deptName, Long managerId) {
+    public Department(String deptName, Employee manager) {
         this.name = deptName;
-        this.managerId = managerId;
+        this.manager = manager;
     }
 
     public Long getId() {
@@ -36,12 +37,12 @@ public class Department {
         this.name = deptName;
     }
 
-    public Long getDeptManager() {
-        return managerId;
+    public Employee getDeptManager() {
+        return manager;
     }
 
-    public void setDeptManager(Long managerId) {
-        this.managerId = managerId;
+    public void setDeptManager(Employee manager) {
+        this.manager = manager;
     }
 
     @Override
@@ -50,19 +51,19 @@ public class Department {
         if (!(o instanceof Department)) return false;
         Department that = (Department) o;
         return name.equals(that.name) &&
-                managerId.equals(that.managerId);
+                manager.equals(that.manager);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, managerId);
+        return Objects.hash(name, manager);
     }
 
     @Override
     public String toString() {
         return "Department{" +
                 "deptName='" + name + '\'' +
-                ", manager=" + managerId +
+                ", manager=" + manager.getFirstName() + " " + manager.getLastName()+
                 '}';
     }
 }

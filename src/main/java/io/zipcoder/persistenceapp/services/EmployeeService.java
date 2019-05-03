@@ -1,6 +1,8 @@
 package io.zipcoder.persistenceapp.services;
 
+import io.zipcoder.persistenceapp.models.Department;
 import io.zipcoder.persistenceapp.models.Employee;
+import io.zipcoder.persistenceapp.repos.DepartmentRepo;
 import io.zipcoder.persistenceapp.repos.EmployeeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,8 +20,8 @@ public class EmployeeService {
         this.employeeRepo = employeeRepo;
     }
 
-    public Employee createEmployee(String firstName, String lastName, String title, String phoneNumber, String email, String hireDate, Long managerId, Long deptNumber) {
-        Employee employee = new Employee(firstName, lastName, title, phoneNumber, email, hireDate, managerId, deptNumber);
+    public Employee createEmployee(String firstName, String lastName, String title, String phoneNumber, String email, String hireDate, Long managerId, Long department) {
+        Employee employee = new Employee(firstName, lastName, title, phoneNumber, email, hireDate, managerId, department);
         return employeeRepo.save(employee);
     }
 
@@ -33,6 +35,10 @@ public class EmployeeService {
 
     public Iterable<Employee> findAllByManager(Long managerId) {
         return employeeRepo.findAllByManager(managerId);
+    }
+
+    public Iterable<Employee> findAllByDepartment(Long deptId) {
+        return employeeRepo.findAllByDepartment(deptId);
     }
 
     public Employee findById(Long id) {
@@ -54,15 +60,15 @@ public class EmployeeService {
         return managers;
     }
 
-//    public List<Employee> findEmployeesWithNoManager() {
-//        List<Employee> employees = new ArrayList<>();
-//        for (Employee e : findAll()) {
-//            if (e.getManager() == null) {
-//                employees.add(e);
-//            }
-//        }
-//        return employees;
-//    }
+    public List<Employee> findAllByManagerIncIndirect(Long managerId) {
+        List<Employee> employees = new ArrayList<>();
+        for (Employee employee : findAll()) {
+            if (findHierarchy(employee.getId()).contains(findById(managerId))) {
+                employees.add(employee);
+            }
+        }
+        return employees;
+    }
 
     public Employee updateEmployee(Long id, Employee employee) {
         Employee original = findById(id);
@@ -73,7 +79,7 @@ public class EmployeeService {
         original.setEmail(employee.getEmail());
         original.setHireDate(employee.getHireDate());
         original.setManager(employee.getManager());
-        original.setDeptNumber(employee.getDeptNumber());
+        original.setDepartment(employee.getDepartment());
         return employeeRepo.save(original);
     }
 
@@ -87,4 +93,16 @@ public class EmployeeService {
         employeeRepo.delete(id);
         return true;
     }
+
+    public boolean deleteEmployeeList(List<Employee> employees) {
+        for (Employee e : employees) {
+            employeeRepo.delete(e.getId());
+        }
+        return true;
+    }
+
+//    public boolean deleteByDepartment(Long deptId) {
+//        employeeRepo.deleteByDepartment(deptId);
+//        return true;
+//    }
 }

@@ -41,6 +41,11 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeService.findAllByManager(managerId), HttpStatus.OK);
     }
 
+    @GetMapping("/findByDepartment/{deptId}")
+    public ResponseEntity<Iterable<Employee>> findAllByDepartment(@PathVariable Long deptId) {
+        return new ResponseEntity<>(employeeService.findAllByDepartment(deptId), HttpStatus.OK);
+    }
+
     @GetMapping("/noManager")
     public ResponseEntity<Iterable<Employee>> findAllWithNoManager() {
         return new ResponseEntity<>(employeeService.findAllWithNoManager(), HttpStatus.OK);
@@ -49,6 +54,11 @@ public class EmployeeController {
     @GetMapping("/{id}/findAllManagers")
     public ResponseEntity<List<Employee>> findAllManagers(@PathVariable Long id) {
         return new ResponseEntity<>(employeeService.findHierarchy(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/findByManager/includeIndirect/{managerId}")
+    public ResponseEntity<List<Employee>> findByManagerIncIndirect(@PathVariable Long managerId) {
+        return new ResponseEntity<>(employeeService.findAllByManagerIncIndirect(managerId), HttpStatus.OK);
     }
 
     @PutMapping("/{id}/updateManager/{managerId}")
@@ -60,4 +70,19 @@ public class EmployeeController {
     public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
         return new ResponseEntity<>(employeeService.updateEmployee(id, employee), HttpStatus.OK);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Boolean> deleteEmployee(@PathVariable Long id) {
+        return new ResponseEntity<>(employeeService.deleteEmployee(id), HttpStatus.OK);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Boolean> deleteEmployeeList(@RequestBody List<Employee> employees) {
+        return new ResponseEntity<>(employeeService.deleteEmployeeList(employees), HttpStatus.OK);
+    }
+
+//    @DeleteMapping("/deleteByDept/{deptId}")
+//    public ResponseEntity<Boolean> deleteByDepartment(@PathVariable Long deptId) {
+//        return new ResponseEntity<>(employeeService.deleteByDepartment(deptId), HttpStatus.OK);
+//    }
 }
