@@ -11,7 +11,7 @@ import java.util.Objects;
 public class Employee {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.TABLE)
     private Long id;
     private String firstName;
     private String lastName;
@@ -20,7 +20,6 @@ public class Employee {
     private String email;
     private String hireDate;
     private Long manager;
-//    @OneToOne(mappedBy = "Employee")
     private Long department;
 
     public Employee() {
